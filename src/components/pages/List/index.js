@@ -29,7 +29,6 @@ class List extends Component {
 
   changePage = (page) => {
     const { history } = this.props;
-    history.push(`/list/${page}`);
     pokemons.find({
       query: {
         $limit,
@@ -37,6 +36,7 @@ class List extends Component {
       },
     }).then((dex) => {
       this.setState({ dex });
+      history.push(`/list/${page}`);
     });
   };
 
@@ -44,7 +44,6 @@ class List extends Component {
     const { dex } = this.state;
     const { match } = this.props;
     const { page = 1 } = match.params;
-    // console.log(pokemonsData);
     return (
       <div>
         <Row gutter={16}>
